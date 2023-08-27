@@ -1,0 +1,8 @@
+- name: gitee
+  url: https://gitee.com/zhoubin
+  src: life
+
+- name: 博客园
+  url: http://www.cnblogs.com/LifelongLearning/
+  src: life
+

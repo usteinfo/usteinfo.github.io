@@ -1,0 +1,12 @@
+- name: Software Engineer Keywords
+  keywords:
+      - Java
+      - .net framework
+      - .net core
+      - Windows Form
+      - Design Patterns
+
+- name: Mobile Developer Keywords
+  keywords:
+      - Maui
+
