@@ -1,4 +1,4 @@
-# 码志
+# 码农感悟
 
 我的个人博客：<https://usteinfo.github.io/>，欢迎 Star 和 Fork。
 
@@ -19,7 +19,7 @@
 
 **[在线预览 &rarr;](https://usteinfo.github.io/)**
 
-![screenshot home](https://usteinfo.github.io//assets/images/screenshots/home.png)
+![screenshot home](https://usteinfo.github.io/assets/images/screenshots/home.png)
 
 ## Fork 指南
 
@@ -81,7 +81,7 @@ Fork 本项目之后，还需要做一些事情才能让你的页面「正确」
 
 ## 联系我
 
-如果对本博客模板或者内容有任何建议，可以通过 [Issues](https://github.com/usteinfo/usteinfo.github.io/issues) 或者微信公众号「闷骚的程序员」与我取得联系。
+如果对本博客模板或者内容有任何建议，可以通过 [Issues](https://github.com/usteinfo/usteinfo.github.io/issues) 或者微信公众号「码农感悟」与我取得联系。
 
 <img width="192px" height="192px" src="https://usteinfo.github.io/assets/images/qrcode.jpg"/>
 
@@ -92,3 +92,4 @@ Fork 本项目之后，还需要做一些事情才能让你的页面「正确」
 [1]: https://github.com/mzlogin/chinese-copywriting-guidelines
 [2]: https://help.github.com/articles/setting-up-your-pages-site-locally-with-jekyll/
 [3]: https://github.com/mzlogin/mzlogin.github.io/issues/2
+[4]: https://mazhuang.org/
