@@ -30,7 +30,7 @@ mindmap2: false
 - 有自定义属性时，还需要重写方法：GetObjectData
 
 示例：
-```
+```csharp
     [Serializable]
     public class ToolException : Exception
     {
@@ -67,6 +67,6 @@ mindmap2: false
 
 
 #### 参考资料
-https://learn.microsoft.com/en-us/dotnet/standard/exceptions/how-to-create-user-defined-exceptions
+[1、how-to-create-user-defined-exceptions](https://learn.microsoft.com/en-us/dotnet/standard/exceptions/how-to-create-user-defined-exceptions)
 
-https://learn.microsoft.com/en-us/dotnet/standard/exceptions/best-practices-for-exceptions
+[2、best-practices-for-exceptions](https://learn.microsoft.com/en-us/dotnet/standard/exceptions/best-practices-for-exceptions)
