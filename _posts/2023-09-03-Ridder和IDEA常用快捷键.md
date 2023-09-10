@@ -1,9 +1,9 @@
 ---
 layout: post
 title: Ridder和IDEA常用快捷键
-categories: [IDE,ridder, IDEA]
+categories: [IDE,Ridder, IDEA]
 description: Ridder和IDEA常用快捷键，提供快速查看
-keywords: ridder, IDEA,快捷键
+keywords: Ridder, IDEA,快捷键
 mermaid: false
 sequence: false
 flow: false

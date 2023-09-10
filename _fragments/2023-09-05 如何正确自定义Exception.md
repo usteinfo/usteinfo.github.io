@@ -3,7 +3,7 @@ layout: fragment
 title: 如何正确自定义 Exception
 tags: [c#, net]
 description: 自定义异常，除了满足基本信息的存储，还要考虑对象序列化和反序列化的兼容性
-keywords: Exception, C#
+keywords: Exception, C#,net
 mermaid: false
 sequence: false
 flow: false
