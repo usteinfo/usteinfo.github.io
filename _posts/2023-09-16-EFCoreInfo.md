@@ -555,7 +555,7 @@ protected override void OnConfiguring(DbContextoptionsBuilder optionsBuilder)
 - DBContext.SavedChanges
 - DbContext.SaveChangesFailed
 - ChangeTracker.Tracked
-- ChangeTracker.SataeChanged
+- ChangeTracker.SateChanged
 
 #### Intercepting Database Operations  
 
