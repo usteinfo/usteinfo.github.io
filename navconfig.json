@@ -1,0 +1,37 @@
+[  
+  {
+    "Name": "常用工具",
+    "Items": [
+      {
+        "Name": "js/css压缩",
+        "CommandType": 1,
+        "Command": "https://tool.oschina.net/jscompress",
+        "Remark": "提供js/css压缩，用于快速定位，压缩出错的位置定位"
+      },
+      {
+        "Name": "变量命名",
+        "CommandType": 1,
+        "Command": "https://www.chtml.cn/",
+        "Remark": "简洁好用的在线的代码命名工具、变量命名工具、变量命名规则库，使用它可以让您轻松摆脱翻译软件的困扰，快速选择合适的变量名称用于开发工作中。"
+      },
+      {
+        "Name": "Json验证",
+        "CommandType": 1,
+        "Command": "https://www.json.cn/",
+        "Remark": ""
+      },
+      {
+        "Name": "Json查看",
+        "CommandType": 1,
+        "Command": "https://jsoncrack.com/editor/",
+        "Remark": ""
+      },
+      {
+        "Name": "截图",
+        "CommandType": 2,
+        "Command": "..\\tools\\Snipaste\\Snipaste.exe",
+        "Remark": ""
+      }
+    ]
+  }
+]
