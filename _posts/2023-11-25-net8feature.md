@@ -20,6 +20,7 @@ mindmap2: false
 - C# 12 中的 InlineArray 特性
 - 随机数增强
 - KeyedServices
+- IPNetwork
 
 ## Route ShortCircuit
 
@@ -388,4 +389,20 @@ internal class UserB : IUser
     public string GetName() => "oec2024";
 }
 
+```
+
+## IPNetwork
+
+.NET 8 新增了 IPNetwork 的实现，支持 [CIDR](/wiki/2023-11-25%20CIDR/) 网络格式。
+
+```
+var ipNetwork = "198.51.0.0/16";
+var network = IPNetwork.Parse(ipNetwork);
+var ip = IPAddress.Parse("198.51.250.42");
+Console.WriteLine(network.Contains(ip));
+```
+
+运行结果：
+```
+true
 ```
