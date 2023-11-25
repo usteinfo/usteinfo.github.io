@@ -18,6 +18,8 @@ mindmap2: false
 - Exception Throw Helper
 - HttpLoggingMiddleware 的改进
 - C# 12 中的 InlineArray 特性
+- 随机数增强
+- KeyedServices
 
 ## Route ShortCircuit
 
@@ -132,7 +134,6 @@ file sealed class MyHttpLoggingInterceptor: IHttpLoggingInterceptor
 
 ```csharp
 var builder = WebApplication.CreateSlimBuilder(args);
-builder.Services.AddControllers();
 builder.Services.AddHttpLogging(options =>
 {
     options.LoggingFields = HttpLoggingFields.All;
@@ -145,8 +146,72 @@ app.UseHttpLogging();
 app.MapGet("/hello", () => "Hello");
 app.MapGet("/crash", () => Results.BadRequest());
 app.MapGet("/req-intercept", () => "Hello .NET 8");
-app.MapControllers();
-await app.RunAsync();
+app.Run();
+```
+
+appliction.json文件中加入
+
+```
+"Microsoft.AspNetCore.HttpLogging.HttpLoggingMiddleware": "Information"
+```
+
+运行应用
+
+
+```
+PS C:\MyData\Source\Net8Test\WebApplication1\bin\Debug\net8.0> dotnet-http :5055/hello
+HTTP/1.1 200 OK
+Content-Type: text/plain; charset=utf-8
+Date: Sat, 25 Nov 2023 08:53:59 GMT
+Server: Kestrel
+Transfer-Encoding: chunked
+
+//日志
+
+info: Microsoft.AspNetCore.HttpLogging.HttpLoggingMiddleware[9]
+      Request and Response:
+      Protocol: HTTP/1.1
+      Method: GET
+      Scheme: http
+      PathBase:
+      Path: /hello
+      Host: localhost:5055
+      User-Agent: dotnet-httpie/0.7.2
+```
+
+```
+PS C:\MyData\Source\Net8Test\WebApplication1\bin\Debug\net8.0> dotnet-http :5055/crash
+HTTP/1.1 400 BadRequest
+Content-Length: 0
+Date: Sat, 25 Nov 2023 08:53:40 GMT
+Server: Kestrel
+
+info: Microsoft.AspNetCore.HttpLogging.HttpLoggingMiddleware[9]
+      Request and Response:
+      Protocol: HTTP/1.1
+      Method: GET
+      Scheme: http
+      PathBase:
+      Path: /crash
+      Host: localhost:5055
+      User-Agent: dotnet-httpie/0.7.2
+      StatusCode: 400
+      Duration: 9.8983
+```
+
+```
+PS C:\MyData\Source\Net8Test\WebApplication1\bin\Debug\net8.0> dotnet-http :5055/req-intercept
+HTTP/1.1 200 OK
+Content-Type: text/plain; charset=utf-8
+Date: Sat, 25 Nov 2023 08:53:14 GMT
+Server: Kestrel
+Transfer-Encoding: chunked
+
+info: Microsoft.AspNetCore.HttpLogging.HttpLoggingMiddleware[9]
+      Request and Response:
+      req-path: /req-intercept
+      StatusCode: 200
+      Content-Type: text/plain; charset=utf-8
 ```
 
 
@@ -176,6 +241,7 @@ More
 比如日志级别目前还都是 Information 不能动态的改变日志级别
 
 另外就是前面提到的即使使用 CombineLogs 在 response 中设置为 HttpLoggingFields.None 时，依然会记录 request 信息，希望后面还会继续优化一下
+>dotnet-http 可以通过如下命令安装：dotnet install dotnet-httpie
 
 ## C# 12 中的 InlineArray 特性
 
@@ -258,4 +324,68 @@ StartsWith 0, 1
 从这个示例可以看得出来，我们可以像使用数组一样使用，同时我们可以直接隐式转换成 Span 和 ReadOnlySpan,
 并且可以使用 Index 和 Range 操作符,但是目前暂时不能直接使用集合表达式和 list pattern，但是我们可以转成 span 之后再使用
 
+## 随机数增强
 
+1、在 8 中对随机数类 Random 提供了 GetItems()方法，可以根据指定的数量在提供的一个集合中随机抽取数据项生成一个新的集合：
+
+```
+ReadOnlySpan<string> colors = new[]{"Red","Green","Blue","Black"};
+
+string[] t1 = Random.Shared.GetItems(colors, 10);
+Console.WriteLine(JsonSerializer.Serialize(t1));
+
+//输出：["Black","Green","Blue","Blue","Green","Blue","Green","Black","Green","Blue"]
+//每次都会不一样
+Console.ReadKey();
+```
+
+2、通过 Random 提供的 Shuffle() 方法，可以将一个集合中的数据项的顺序打乱：
+
+```
+string[] colors = new[]{"Red","Green","Blue","Black"};
+Random.Shared.Shuffle(colors);
+
+Console.WriteLine(JsonSerializer.Serialize(colors));
+
+Console.ReadKey();
+```
+
+## KeyedServices
+
+要实现一个接口多个实现类的注入，还需要写一些额外的代码，比较繁琐。
+
+版本 8 中添加了注入关键字，可以很方便实现，看下面代码：
+
+```csharp
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddKeyedSingleton<IUser, UserA>("A");
+builder.Services.AddKeyedSingleton<IUser, UserB>("B");
+
+var app = builder.Build();
+
+app.MapGet("/user1", ([FromKeyedServices("A")] IUser user) =>
+{
+    return $"hello , {user?.GetName()}";
+});
+app.MapGet("/user2", ([FromKeyedServices("B")] IUser user) =>
+{
+    return $"hello , {user?.GetName()}";
+});
+
+app.Run();
+
+internal interface IUser
+{
+    string GetName();
+}
+internal class UserA: IUser
+{
+    public string GetName() => "oec2023";
+}
+internal class UserB : IUser
+{
+    public string GetName() => "oec2024";
+}
+
+```
