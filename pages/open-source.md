@@ -12,12 +12,13 @@ permalink: /open-source/
 <section class="container">
     <header class="text-center">
         <h1>Open Source Projects</h1>
-        <p class="lead">I have <span class="repo-count">{{ sorted_repos.size }}</span> projects on Github</p>
+        <p class="lead">I have <span class="repo-count">{{ sorted_repos.size | plus: -2 }}</span> projects on Github</p>
     </header>
     <div class="repo-list">
         <!-- Check here for github metadata -->
         <!-- https://help.github.com/articles/repository-metadata-on-github-pages/ -->
         {% for repo in sorted_repos %}
+        {% if repo.name != 'usteinfo.github.io' and repo.name != 'blog-comments' %}
         <a href="{{ repo.html_url }}" target="_blank" class="one-third-column card text-center">
             <div class="thumbnail">
                 <div class="card-image geopattern" data-pattern-id="{{ repo.name }}">
@@ -46,6 +47,7 @@ permalink: /open-source/
                 </div>
             </div>
         </a>
+        {% endif %}
         {% endfor %}
     </div>
 </section>
