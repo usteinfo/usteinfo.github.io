@@ -31,6 +31,24 @@
         "CommandType": 2,
         "Command": "..\\tools\\Snipaste\\Snipaste.exe",
         "Remark": ""
+      },
+      {
+        "Name": "软件下载",
+        "CommandType": 1,
+        "Command": "https://mirrors.cernet.edu.cn/",
+        "Remark": ""
+      },
+      {
+        "Name": "网盘",
+        "CommandType": 1,
+        "Command": "https://plainly-improved-moccasin.ngrok-free.app/",
+        "Remark": ""
+      },
+      {
+        "Name": "博客",
+        "CommandType": 1,
+        "Command": "https://genuine-weekly-deer.ngrok-free.app/note",
+        "Remark": ""
       }
     ]
   }
