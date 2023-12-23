@@ -47,8 +47,31 @@
       {
         "Name": "博客",
         "CommandType": 1,
-        "Command": "https://genuine-weekly-deer.ngrok-free.app/note",
+        "Command": "https://genuine-weekly-deer.ngrok-free.app/blog",
         "Remark": ""
+      }
+    ]
+  },
+  {
+    "Name": "开发工具",
+    "Items": [
+      {
+        "Name": "DockerCliTocompose",
+        "CommandType": 1,
+        "Command": "https://www.composerize.com/",
+        "Remark": "Docker命令转换"
+      },
+      {
+        "Name": "DockerCoimposeToCli",
+        "CommandType": 1,
+        "Command": "https://www.decomposerize.com/",
+        "Remark": ""
+      },
+      {
+        "Name": "DockerCompose转换",
+        "CommandType": 1,
+        "Command": "https://www.composeverter.com/",
+        "Remark": "Docker Compose文件版本转换"
       }
     ]
   }
